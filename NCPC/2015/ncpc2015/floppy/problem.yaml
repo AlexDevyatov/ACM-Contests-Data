@@ -1,0 +1,16 @@
+source: Nordic Collegiate Programming Contest 2015
+source_url: http://ncpc.idi.ntnu.no/
+author: Jon Marius Venstad
+# rights_owner:
+license: cc by-sa
+
+limits:
+    time_multiplier: 2
+#    time_safety_margin: 2
+#    memory: 4096
+#    output: 16
+#    compilation_time: 240
+#    validation_time: 240
+#    validation_memory: 3072
+#    validation_output: 4
+#validator_flags: space_change_sensitive float_absolute_tolerance 1e-6

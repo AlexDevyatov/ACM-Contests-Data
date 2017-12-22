@@ -1,0 +1,7 @@
+INT(1, 250000, n) NEWLINE
+REP(n)
+   INT(1, 10^9, s)
+   SPACE
+   INT(s, 10^9, t)
+   NEWLINE
+END

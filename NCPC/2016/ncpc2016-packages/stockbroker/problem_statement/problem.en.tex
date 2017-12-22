@@ -1,0 +1,38 @@
+\problemname{Daydreaming Stockbroker}
+
+%\illustration{.4}{Stockbroker}{Public domain}%
+\illustration{0.4}{greed}{\href{https://www.flickr.com/photos/calliope/2207307656}{Photo} by liz west on flickr, cc by}%
+\noindent
+Gina Reed, the famous stockbroker, is having a slow day at work, and
+between rounds of solitaire she is daydreaming.  Foretelling the
+future is hard, but imagine if you could just go back in time and use
+your knowledge of stock price history in order to maximize your
+profits!
+
+Now Gina starts to wonder: if she were to go back in time a few days
+and bring a measly $\$100$ with her, how much money could she make by just buying and
+selling stock in Rollercoaster Inc.~(the most volatile stock in
+existence) at the right times? Would she earn enough to retire comfortably in a
+mansion on Tenerife?
+
+Note that Gina can not buy fractional shares, she must buy whole
+shares in Rollercoaster Inc. The total number of shares in
+Rollercoaster Inc.~is $100\,000$, so Gina can not own more than
+$100\,000$ shares at any time.  In Gina's daydream, the world is nice
+and simple: there are no fees for buying and selling stocks,
+stock prices change only once per day,
+and her trading does not influence the valuation of the stock.
+
+\section*{Input}
+
+The first line of input contains an integer $d$ ($1 \le d \le 365$),
+the number of days that Gina goes back in time in her daydream.  Then
+follow $d$ lines, the $i$'th of which contains an integer $p_i$
+($1 \le p_i \le 500$) giving the price at which Gina can buy or sell
+stock in Rollercoaster Inc.~on day $i$. Days are ordered from oldest
+to newest.
+
+\section*{Output}
+
+Output the maximum possible amount of money Gina can have on the last
+day. Note that the answer may exceed $2^{32}$.

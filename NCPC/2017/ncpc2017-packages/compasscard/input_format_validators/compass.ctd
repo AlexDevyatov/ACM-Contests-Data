@@ -1,0 +1,8 @@
+INT(1, 10^5, n) NEWLINE
+REPI(i, n)
+   INT(0, 359, r[i]) SPACE
+   INT(0, 359, g[i]) SPACE
+   INT(0, 359, b[i]) SPACE
+   INT(0, 2^31-1, id[i]) NEWLINE
+END
+ASSERT(UNIQUE(id))

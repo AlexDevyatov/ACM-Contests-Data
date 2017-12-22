@@ -1,0 +1,7 @@
+source: Nordic Collegiate Programming Contest 2017
+source_url: http://ncpc.idi.ntnu.no/
+license: cc by-sa
+author: Pehr Söderman
+
+limits:
+   time_multiplier: 3 # because Scala has a long startup time

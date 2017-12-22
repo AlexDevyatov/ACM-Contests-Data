@@ -1,0 +1,45 @@
+\problemname{Galactic Collegiate Programming Contest}
+
+\illustration{0.5}{planets}{\href{https://pixabay.com/en/planets-sun-earth-galaxy-sky-1068198/}{Picture} by GuillaumePreat on Pixabay, cc0}%
+\noindent
+One hundred years from now, in $2117$, the International Collegiate
+Programming Contest (of which the NCPC is a part) has expanded
+significantly and it is now the Galactic Collegiate Programming Contest
+(GCPC).
+
+This year there are $n$ teams in the contest. The teams are numbered
+$1,2,\ldots,n$, and your favorite team has number $1$.
+
+Like today, the score of a team is a pair of integers $(a,b)$
+where $a$ is the number of solved problems and $b$ is the total
+penalty of that team.  When a team solves a problem there is some
+associated penalty (not necessarily calculated in the same way as in the NCPC -- the precise details are not important in this problem).  The total penalty of a
+team is the sum of the penalties for the solved problems of the team.
+
+Consider two teams $t_1$ and $t_2$ whose scores are
+$(a_1,b_1)$ and $(a_2,b_2)$.
+The score of team $t_1$ is better than that of $t_2$ if either $a_1>a_2$,
+or if $a_1=a_2$ and $b_1<b_2$.
+The rank of a team is $k+1$ where $k$ is the number
+of teams whose score is better.
+
+You would like to follow the performance of your favorite
+team. Unfortunately,
+the organizers of GCPC do not provide a
+scoreboard.
+Instead, they send a message immediately whenever a team solves a
+problem.
+
+\section*{Input}
+
+The first line of input contains two integers $n$ and $m$, where $1 \le n \le 10^5$ is the number of teams, and $1 \le m \le 10^5$ is the number of events.
+
+Then follow $m$ lines that describe the events. Each line contains
+two integers $t$ and $p$ ($1 \le t \le n$ and $1 \le p \le 1000$),
+meaning that team $t$ has solved a problem with penalty $p$.
+The events are ordered by the time when they happen.
+
+\section*{Output}
+
+Output $m$ lines.  On the $i$'th line, output the rank of your
+favorite team after the first $i$ events have happened.

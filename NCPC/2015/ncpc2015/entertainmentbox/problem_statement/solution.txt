@@ -1,0 +1,26 @@
+Consider
+
+3 2
+2 3
+4 5
+1 6
+
+The correct anser is 3.
+
+ The following greedy strategy works: consider intervals in the order
+of ascending right endpoints, and whenever the next interval can be
+taken, then take it.
+
+ The problem is with checking the condition whether the next interval
+can be taken.  The simple test right(Q[0]) <= left(A[i]) does not
+quite work, since it is too restrictive.  Q[0] can finish before Q[1]
+starts, and thus one could possibly squeeze A[i] as well, as Q[0] and
+Q[1] do not add up in the capacity at any point.
+
+ The only way I see how to fix it at the current moment is to
+implement the checking condition on a counting tree / interval tree
+with + updates on intervals and max queries on intervals (both in log
+n time).  Implementation of such a tree is pretty hardcore, so if we
+do not see any other solution, this increases the difficulty
+significantly.
+

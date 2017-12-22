@@ -1,0 +1,8 @@
+Intended solution
+-----------------
+A straight forward three-way test of whether d1 - d2 is greater than or at most
+180, then compute the appropriate rotation.
+
+Another option is the brute force solution testing, for each of the 360
+directions d (in increasing absolute distance from 0) whether d1 + d == d (mod
+360).

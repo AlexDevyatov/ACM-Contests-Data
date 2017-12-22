@@ -1,0 +1,12 @@
+For each vertex, branch on putting a drone either on this vertex or
+one of its neighbours. For the selected vertex, mark it and its
+neighbours and continue.  We do now position drones on marked
+vertices.
+
+Note that it is important that one does not copy the graph, but do it
+in-place.  Running time $O(5^k + n)$. Note that by Ramsey theory,
+since $\omega(G) \leq 5$, if $n \geq 442$ then this is a yes-instance.
+
+Indeed, we do not need to invoke Ramsey, but simply observe that we
+have max degree 4, the graph needs to be how big in order for it to be
+yes?  30?

@@ -1,0 +1,10 @@
+author: Markus Fanebust Dregi
+source: Nordic Collegiate Programming Contest 2016
+source_url: http://ncpc.idi.ntnu.no/
+license: cc by-sa
+
+validator_flags: float_tolerance 1e-4
+
+limits:
+   time_multiplier: 1.5
+   

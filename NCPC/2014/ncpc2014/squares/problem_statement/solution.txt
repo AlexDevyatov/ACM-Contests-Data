@@ -1,0 +1,16 @@
+How many squares, solution
+
+Time complexity: O(n^2 log n)
+
+We first apply an angular sorting of the lines. Note that we may do it 
+using brute-force, in quadratic time. Then we look at groups of parallel lines
+in pairs: with one group A, we consider also the group B of the lines 
+perpendicular to A. We generate all the distances between lines from A,
+and sort them to figure out, for every distance d, how many pairs of lines
+from A are in distance d from each other. Then we look at all the pairs of
+lines from B, and for every pair that is in distance d we add to the result
+the number of pairs of lines of A that have this distance (stored in a map
+or binary searched, or whatever).
+
+Note: one can change the problem to "How many rectangles", and then you can 
+solve it in O(n log n) time.

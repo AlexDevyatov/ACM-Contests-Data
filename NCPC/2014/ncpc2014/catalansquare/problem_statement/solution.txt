@@ -1,0 +1,13 @@
+Intended solution
+-----------------
+The Catalan numbers satisfy the reccurence
+C_0 = 1 and
+C_{n+1} = \sum_{k=0}^{n} C_k * C_{n-k},
+which means that the coefficients of S_n are just the Catalan numbers
+shifted one place to the right.
+
+A more refined way of seeing this is to note that the generating
+function for
+the Catalan numbers satisfies g(s) = 1 + s*g(s)^2, which means
+g(s)^2  = (g(s) - 1)/s. Now, g(s) = 1 + s + 2s^2 + 5s^3 + 14s^4 + ...,
+so (g(s) - 1)/s = 1 + 2s + 5s^2 + 14s^3 + ...

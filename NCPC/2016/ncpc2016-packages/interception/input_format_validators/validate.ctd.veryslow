@@ -1,0 +1,23 @@
+INT(4, 250000, n) SPACE INT(1, 500000, m) SPACE INT(1, n-1, c1) SPACE INT(1, n-1, c2) NEWLINE
+ASSERT(n % 2 == 0)
+ASSERT(c1 % 2 == 1)
+ASSERT(c2 % 2 == 1)
+ASSERT(c1 < c2)
+
+REPI(i, m)
+   INT(1, n, a[i]) SPACE INT(1, n, b[i])
+   ASSERT(a[i] != b[i])
+   IF (a[i] % 2 != b[i] % 2)
+      SPACE INT(1, n, c) NEWLINE
+      ASSERT(c == c1 || c == c2)
+   ELSE
+      NEWLINE
+   END
+   IF (a[i] > b[i])
+      SET(tmp = a[i])
+      SET(a[i] = b[i])
+      SET(b[i] = tmp)
+   END
+END
+
+ASSERT(UNIQUE(a, b))

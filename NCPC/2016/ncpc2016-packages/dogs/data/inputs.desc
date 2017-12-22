@@ -1,0 +1,9 @@
+skip
+skip
+normal exactly 4 4 randwalk
+normal random 5 10 5 10 randwalk
+normal random 5 10 5 10 randwalk
+normal exactly 100000 100000 randwalk
+skip
+skip
+skip

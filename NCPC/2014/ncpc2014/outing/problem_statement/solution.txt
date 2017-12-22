@@ -1,0 +1,5 @@
+The participant dependencies make multiple ‘cores’ plus some number of tails around each core. From any group we must take at least the core and at most the entire group.
+
+This is a knapsack problem where each item has variable size. Solve this using a modified version of the standard dynamic programming - make a table possible[N][K], which denotes whether it is possible to admit K participants using the first N groups. Fill it in with the following recurrence relation:
+
+possible[N][K] = possible[N-1][K] or (possible[N-1][K-i] | min_size[N] <= i <= max_size[N])

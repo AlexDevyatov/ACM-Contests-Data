@@ -1,0 +1,9 @@
+author: Per Austrin
+source: Nordic Collegiate Programming Contest 2016
+source_url: http://ncpc.idi.ntnu.no/
+license: cc by-sa
+
+validator_flags: float_absolute_tolerance 1e-6
+
+limits:
+   time_multiplier: 1.75 # C++ solution with long double very slow

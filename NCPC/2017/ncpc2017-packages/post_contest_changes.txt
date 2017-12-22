@@ -1,0 +1,120 @@
+The following changes have been made to the problem packages *after*
+the contest ended.
+
+
+1. Problem statement updates corresponding to clarifications that were
+made during the contest (and an associated validattor update).
+======================================================================
+
+diff --git a/problems/bestrelayteam/problem_statement/problem.en.tex b/problems/bestrelayteam/problem_statement/problem.en.tex
+index af7d68c..906f305 100644
+--- a/problems/bestrelayteam/problem_statement/problem.en.tex
++++ b/problems/bestrelayteam/problem_statement/problem.en.tex
+@@ -28,7 +28,7 @@ after the decimal point.
+
+ \section*{Output}
+
+-First, output a line containing the time of the best team.  The precise formatting of the time is not important.  Then output four lines containing the names of the runners in that
++First, output a line containing the time of the best team, accurate to an absolute or relative error of at most $10^{-9}$.  Then output four lines containing the names of the runners in that
+ team.  The first of these lines should contain the runner you have
+ picked for the $1$st leg, the second line the runner you have picked
+ for the $2$nd leg, and so on. Any solution that results in the fastest
+diff --git a/problems/hubtown/problem_statement/problem.en.tex b/problems/hubtown/problem_statement/problem.en.tex
+index 236f8ae..984daae 100644
+--- a/problems/hubtown/problem_statement/problem.en.tex
++++ b/problems/hubtown/problem_statement/problem.en.tex
+@@ -42,4 +42,4 @@ No two train lines overlap, but multiple citizens may live at the same coordinat
+ First, output a single integer $s$ -- the maximum number of citizens who can go by train.
+ Then, output $s$ lines, one for each citizen that goes by train.
+ On each line, output the index of the citizen followed by the index of the train line the citizen takes.
+-The indices should be zero-indexed (i.e., between $0$ and $n-1$ for citizens, and between $0$ and $m-1$ for train lines, respectively), using the same order as they were given in the input.
++The citizens are numbered from $0$ to $n-1$ in the order they are given in the input.  The trains are numbered from $0$ to $m-1$ in the order they are given in the input.   The output lines may be given in any order.
+diff --git a/problems/importspaghetti/input_format_validators/validate.py b/problems/importspaghetti/input_format_validators/validate.py
+index 3392ab2..f98388b 100755
+--- a/problems/importspaghetti/input_format_validators/validate.py
++++ b/problems/importspaghetti/input_format_validators/validate.py
+@@ -18,6 +18,7 @@ line = stdin.readline()
+ assert line[-1] == '\n'
+ names = line[:-1].split(' ')
+ assert len(names) == n
++assert len(set(names)) == n
+ for x in names:
+     assert re.match(filename, x)
+
+diff --git a/problems/importspaghetti/problem_statement/problem.en.tex b/problems/importspaghetti/problem_statement/problem.en.tex
+index a10412d..ce51c71 100644
+--- a/problems/importspaghetti/problem_statement/problem.en.tex
++++ b/problems/importspaghetti/problem_statement/problem.en.tex
+@@ -16,7 +16,7 @@ the cycles in the dependency graph.  So you start by finding a shortest
+ dependency cycle.
+
+ \section*{Input}
+-The first line of input contains a number $n$, $1 \le n \le 500$, the number of files.  Then follows one line with~$n$ names of files.  Each name is a string with at least $1$ and at most $8$ lower case letters `\texttt{a}' to `\texttt{z}'.
++The first line of input contains a number $n$, $1 \le n \le 500$, the number of files.  Then follows one line with~$n$ distinct names of files.  Each name is a string with at least $1$ and at most $8$ lower case letters `\texttt{a}' to `\texttt{z}'.
+ %
+ Then follow~$n$ sections, one section per file name, in the order they were
+ given on the second line.  Each section starts with one line containing the name of the
+@@ -25,7 +25,7 @@ file and an integer~$k$, followed by~$k$ lines, each starting with ``\texttt{imp
+ Each ``\texttt{import}'' line is a comma-space separated line of dependencies.  No file
+ imports the same file more than once, and every file imported is listed in the
+ second line of the input.  Comma-space separated means that every line will
+-start with ``\texttt{import}'', then have a list of class names separated by \texttt{``, ''} (see sample inputs for examples).
++start with ``\texttt{import}'', then have a list of file names separated by \texttt{``, ''} (see sample inputs for examples).  Each import statement is followed by at least one file name.
+
+
+
+@@ -33,5 +33,5 @@ start with ``\texttt{import}'', then have a list of class names separated by \te
+
+ If the code base has no cyclic dependencies, output ``\texttt{SHIP
+ IT}''.  Otherwise, output a line containing the names of files in a
+-shortest cycle, in the order of the cycle.  If there are many shortest
++shortest cycle, in the order of the cycle (i.e., the $i$th file listed must import the $(i+1)$st file listed, and the last file listed must import the first).  If there are many shortest
+ cycles, any one will be accepted.
+
+
+
+
+2. Output validator changes, due to some output validators having been
+found to be too strict (in particular they would reject output missing
+a final '\n' character).  Submissions making this small mistake were
+rejected during the contest.
+======================================================================
+diff --git a/problems/airportcoffee/output_validators/validator/validator.cpp b/problems/airportcoffee/output_validators/validator/validator.cpp
+index 141461b..6839ae3 100644
+--- a/problems/airportcoffee/output_validators/validator/validator.cpp
++++ b/problems/airportcoffee/output_validators/validator/validator.cpp
+@@ -75,7 +75,7 @@ int main(int argc, char** argv) {
+     trav(it, judgeSeq) judge_ans >> it;
+
+ 	try {
+-        author_out.exceptions(author_out.failbit | author_out.badbit | author_out.eofbit);
++        author_out.exceptions(author_out.failbit | author_out.badbit);
+
+         int teamn;
+         author_out >> teamn;
+diff --git a/problems/bestrelayteam/output_validators/validator/validator.cpp b/problems/bestrelayteam/output_validators/validator/validator.cpp
+index a0b81b4..6a95b31 100644
+--- a/problems/bestrelayteam/output_validators/validator/validator.cpp
++++ b/problems/bestrelayteam/output_validators/validator/validator.cpp
+@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
+   double judge_answer, answer;
+   judge_ans >> judge_answer;
+
+-  author_out.exceptions(author_out.failbit | author_out.badbit | author_out.eofbit);
++  author_out.exceptions(author_out.failbit | author_out.badbit);
+   try {
+     author_out >> answer;
+     if (!almost_same(answer, judge_answer)) {
+diff --git a/problems/hubtown/output_validators/validator/validator.cpp b/problems/hubtown/output_validators/validator/validator.cpp
+index 39e5bf3..2b21328 100644
+--- a/problems/hubtown/output_validators/validator/validator.cpp
++++ b/problems/hubtown/output_validators/validator/validator.cpp
+@@ -126,7 +126,7 @@ int main(int argc, char** argv) {
+ 	judge_ans.close();
+
+ 	try {
+-        author_out.exceptions(author_out.failbit | author_out.badbit | author_out.eofbit);
++        author_out.exceptions(author_out.failbit | author_out.badbit);
+
+         int teamAns;
+         if (!(author_out >> teamAns)) {

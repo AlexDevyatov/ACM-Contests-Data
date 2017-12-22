@@ -1,0 +1,18 @@
+source: Nordic Collegiate Programming Contest 2015
+source_url: http://ncpc.idi.ntnu.no/
+author: Pehr Söderman, Lukáš Poláček
+rights_owner: Scrool AB
+license: cc by-sa
+
+#validation: custom
+# Use this line instead to pass "author_messages" as command-line
+# option to the validator:
+#  validator: custom author_messages
+
+
+# Override standard limits: say that the TLE solutions provided should
+# be at least 4 times above the time limit in order for us to be
+# happy.
+limits:
+  time_multiplier: 1.2
+  time_safety_margin: 2

@@ -1,0 +1,7 @@
+source: Nordic Collegiate Programming Contest 2017
+source_url: http://ncpc.idi.ntnu.no/
+license: cc by-sa
+author: Lukáš Poláček
+
+limits:
+   time_multiplier: 1.4 # Python sol sluggish

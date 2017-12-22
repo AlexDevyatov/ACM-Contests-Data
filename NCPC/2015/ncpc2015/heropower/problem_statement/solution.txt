@@ -1,0 +1,37 @@
+The key observation is that once the player activates SP, things can only play
+out one way all the way to the beginning of the first phrase that won't be
+overlapped. And whatever phrase that is, you will always reach it with 0 seconds
+of SP.
+
+Given this insight, it's easy to see that many different paths of play lead to
+these identical states, where you are right at the beginning of some phrase,
+with 0 SP. This allows for dynamic programming: for each SP phrase in the song,
+pretend that the song starts right there and compute the maximum score in that
+"sub-song".
+
+Of course, finding the maximum score in a song is the problem itself, so what
+we have ended up with now is a divide-and-conquer of sorts. As always, there is
+a base case: the sub-song starting with the last phrase. That's only a matter of
+finding the highest-scoring single activation (which takes some amount of work
+to do, but is a considerably simpler problem). Now, working backwards, we can
+find the optimal score from the previous phrase by finding the best singel-
+activation-plus-what's-optimal-after-that combination. We already know what's
+optimal from whichever phrase an SP activation ends before, so we can just reuse
+that result.
+
+And that's how you do it starting from each phrase: just look for the best
+single activation ending before each of the subsequent phrases or reaching past
+all of them. Just one activation has to be placed in the best way, and a
+recursive, memoized, call will take care of the rest.
+
+About optimal activation placement. Given a phrase to start from, just simulate
+playing the song. Keep track of the max amount of Star Power at all times. Have
+a list of upcoming phrases to reach with emptied SP. At each "step" forward,
+check the score one would get if they activated now plus the score from the
+phrases never overlapped in earlier steps up to the first phrase beyond a max SP
+activation. Then remove all phrases that are less than max SP away from the
+list. Keep stepping until the end of the song is reached by max SP. Some more
+efficient step than a millisecond at a time or so should be used. You can for
+example step to the next note to play, or the next note for SP to end on.
+
+Running time O(np)

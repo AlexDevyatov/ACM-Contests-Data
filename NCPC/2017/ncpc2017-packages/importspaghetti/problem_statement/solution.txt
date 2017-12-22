@@ -1,0 +1,4 @@
+Intended solution
+-----------------
+
+Minimize for v in vertices, bfs(v, v)

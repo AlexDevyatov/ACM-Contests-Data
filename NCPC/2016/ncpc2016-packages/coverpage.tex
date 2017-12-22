@@ -1,0 +1,92 @@
+\makeatletter
+
+%%
+%% Cover page
+%%
+\newcommand{\coverpage}{
+  \pagestyle{empty}
+  \begin{center}
+    \sf
+    {\Huge
+      \ifx \@contestname \@empty
+      \ifx \@contestshortname \@empty
+      \ClassError{problemset}{Must provide either contest name or contest short name for cover page.}{}
+      \else
+      \@contestshortname
+      \fi
+      \else
+      \@contestname
+      \fi
+    }\\
+    \vspace{5mm}
+    %
+    \ifx \@contestname \@empty \relax \else
+    \ifx \@contestshortname \@empty \relax \else
+    {\LARGE \textsl{\@contestshortname}}\\
+    \vspace{5mm}
+    \fi
+    \fi
+    \vspace{5mm}
+    %
+    \ifx \@location \@empty \relax \else
+    {\huge \@location}\\
+    \vspace{1.0cm}
+    \fi
+    %
+    \ifx \@contestlogo \@empty \relax \else
+    \includegraphics[height=6cm]{\@contestlogo}\\
+    \vspace{1.0cm}
+    \fi
+    %
+    \Huge{\contentsname}\\
+    \vspace{7.5mm}
+    \LARGE
+    \@starttoc{toc}\\
+    \vspace{20mm}
+    {
+      \Large\sf
+      Do not open before the contest has started.
+    }
+  \end{center}
+  \advicepage
+  \cleardoublepage
+  \pagestyle{fancy}
+  \setcounter{page}{1}
+}
+
+\newcommand{\advicepage}{
+
+  \clearpage
+
+  \thispagestyle{empty}
+
+  {\Large Advice, hints, and general information}
+
+  \begin{itemize}
+  \item
+    Your submissions will be run multiple times, on several different
+    input files.  If your submission is incorrect, the error message you
+    get will be the error exhibited on the first input file on which you
+    failed.  E.g., if your instance is prone to crash but also incorrect,
+    your submission may be judged as either ``wrong answer'' or ``run
+    time error'', depending on which is discovered first.
+    
+  \item
+    For problems with floating point output, we only require
+    that your output is correct up to some error tolerance.
+
+    For example, if the problem requires the output to be within
+    either absolute or relative error of $10^{-4}$, this means that
+    \begin{itemize}
+    \item If the correct answer is $0.05$, any answer between $0.0499$ and $.0501$ will be accepted.
+    \item If the correct answer is $500$, any answer between $499.95$ and $500.05$ will be accepted.
+    \end{itemize}
+    Any reasonable format for floating point numbers is
+    acceptable.  For instance, ``17.000000'', ``0.17e2'', and
+    ``17'' are all acceptable ways of formatting the number $17$.  For
+    the definition of reasonable, please use your common sense.
+\end{itemize}
+
+}
+
+\makeatother

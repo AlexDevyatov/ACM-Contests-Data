@@ -1,0 +1,12 @@
+Intended Solution
+
+First, one can observe that if a connected component of the graph
+contains an edge labeled~$0$ or~$2$ the guarding of the component is
+already decided.  In fact, if one knows one vertex in a component this
+information propagates throughout the component.  If a component
+contains an edge labeled~$0$ or~$2$ we propagate and either say TODO
+if conflicts occur and otherwise we count the number of guards needed.
+
+If the component contains only edges labeled~$1$.  Any valid solution
+is a $2$-coloring of the graph.  If no such coloring exists we say
+TODO and otherwise we position lounges at the color of minimum size.

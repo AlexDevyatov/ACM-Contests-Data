@@ -1,0 +1,9 @@
+source: Nordic Collegiate Programming Contest 2017
+source_url: http://ncpc.idi.ntnu.no/
+author: Johan Sannemo
+license: cc by-sa
+validation: custom
+
+limits:
+   time_multiplier: 2.5
+   time_safety_margin: 3

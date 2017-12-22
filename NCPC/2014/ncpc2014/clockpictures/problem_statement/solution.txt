@@ -1,0 +1,3 @@
+Think of each clock image as a circular string, where the i-th letter is the angle between hand (i) and hand (i+1). The two images represent the same clock if one of these strings can be rotated so that they are both the same.
+
+If string X is a rotation of string Y, then X will be a substring of (Y+Y). Use a standard string matching algorithm such as KMP to verify this.

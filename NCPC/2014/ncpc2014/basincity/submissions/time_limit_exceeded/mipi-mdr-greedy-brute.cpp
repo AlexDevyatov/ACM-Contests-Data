@@ -1,0 +1,145 @@
+// Runs greedy first and if it fails it runs a n choose k algorithm
+
+#include <cstdio>
+#include <iostream>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <stack>
+#include <list>
+#include <queue>
+#include <deque>
+#include <cctype>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <iterator>
+#include <numeric>
+#include <cmath>
+using namespace std;
+
+typedef pair<int,int> PII;
+
+#define ALL(x) x.begin(),x.end()
+#define REP(i,n) for (int i=0; i<(n); ++i)
+#define FOR(var,pocz,koniec) for (int var=(pocz); var<=(koniec); ++var)
+#define FORD(var,pocz,koniec) for (int var=(pocz); var>=(koniec); --var)
+#define PB push_back
+#define PF push_front
+#define MP(a,b) make_pair(a,b)
+#define F first
+#define S second
+#define LD long double
+
+#define MAX 100
+
+int n,k,l,kk;
+int G[MAX][10];
+int deg[MAX];
+bool mrk[MAX];
+int rdeg[MAX];
+bool del[MAX];
+int deleted;
+
+inline void giveAnswer(int ans){
+	if (ans) printf("possible\n"); else printf("impossible\n");
+	exit(0);
+}
+
+// The brute force solver
+inline void verifyStuff(){
+	REP(v,n) if (mrk[v]){
+		REP(t,deg[v]) if (mrk[G[v][t]]) return;
+	}
+	giveAnswer(1);
+}
+
+void backtrack(int d){
+	if (l==k){
+		verifyStuff();
+		return;
+	}
+	if (n-d<k-l) return;
+	backtrack(d+1);
+	mrk[d]=true; l++;
+	backtrack(d+1);
+	mrk[d]=false; l--;
+}
+
+void doBrute(){
+    backtrack(0);
+    giveAnswer(0);
+}
+
+// The greedy solver
+inline void deleteVertex(int v){
+	if (!del[v]){
+		REP(t,deg[v]) rdeg[G[v][t]]--;
+		del[v]=true;
+		deleted++;
+	}
+}
+
+inline void doScan(){
+	int bst=1000;
+	REP(v,n) if (!del[v]){
+		if (rdeg[v]<bst) bst=rdeg[v];
+
+		if (rdeg[v]==0) {
+			del[v]=true; deleted++;
+			k--;
+		}
+		if (rdeg[v]==1) {
+			del[v]=true; deleted++;
+			REP(t,deg[v])
+				deleteVertex(G[v][t]);
+			k--;		
+		}
+	}
+	if (bst<2) return;
+	vector<int> cand;
+	REP(v,n) if (!del[v] && rdeg[v]==bst) cand.PB(v);
+	int l = rand()%(cand.size()); int vv=cand[l];
+	del[vv]=true; deleted++;
+	REP(t,deg[vv])
+		deleteVertex(G[vv][t]);
+	k--;
+}
+
+const int wchuj=200000;
+
+void doGreedy(){
+	srand(time(0));
+    kk = k;
+    REP(t,wchuj){
+        deleted=0;
+        k=kk;
+        REP(i,n) {rdeg[i]=deg[i]; del[i]=false;}
+        while(deleted<n){
+            doScan();
+            if (k<=0) giveAnswer(1);
+        }
+    }
+    k = kk;
+}
+
+int main(){
+    scanf("%d\n%d\n",&k,&n);
+
+    if (n>=k*5) giveAnswer(1);
+
+    REP(i,n){
+        int dg;
+        scanf("%d",&dg); deg[i]=dg;
+        REP(j,dg){
+            int v;
+            scanf("%d",&v);
+            G[i][j]=v-1;
+        }
+    }
+
+    doGreedy();
+    doBrute();
+
+    return 0;
+}

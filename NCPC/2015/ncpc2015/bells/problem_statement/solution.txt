@@ -1,0 +1,15 @@
+Let g(n) be the sequence of permutations for input n. Trivially, g(1) = [1]. To calculate g(n + 1), we can take all permuations in g(n), and insert (n+1) at all positions, such that (n+1) moves by at most 1 step. We need to alternate the direction of moving n+1, first we move it backwards and then forwards, then backwards, etc.
+
+Suppose g(3) starts with 1 2 3 and 1 3 2. To get g(4), we insert 4, which results in:
+1 2 3 4
+1 2 4 3
+1 4 2 3
+4 1 2 3
+4 1 3 2
+1 4 3 2
+1 3 4 2
+1 3 2 4
+
+Notice that if we removed 4 in the sequence above, we would see 1 2 3 repeated 4 times, followed by 1 3 2 repeated 4 times. Also, 4 moves first backwards and then forwards.
+
+Difficulty: 40
